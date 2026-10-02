@@ -1,62 +1,27 @@
-```markdown
+APB Master
 
-&#x20;***APB Master***
+This is a small Verilog project I made while learning how an APB master works. It includes the design and a testbench that I ran in Vivado.
 
+Project files
 
+APB Master.v contains the master design. It moves through idle, setup, and access states to handle a transfer.
 
-This is a small Verilog project I made while learning how an APB master works. It contains a master module and a testbench, and I used Vivado to work with the design.
+APB_tb.v contains the testbench. It creates the clock, applies reset, sends a write transfer, and raises pready to let the transfer finish.
 
+apb_constraints.xdc sets a 10 ns clock period for timing analysis.
 
+Requirements
 
-&#x20;***What the design does***
+AMD Vivado is needed to open the project and run the simulation.
 
+Run the simulation
 
+In Vivado, make sure APB Master.v is under Design Sources and APB_tb.v is under Simulation Sources. Set apb_master_tb as the simulation top, then run behavioral simulation.
 
-The master has three states: idle, setup, and access. It waits for `transfer`, presents the address and write data during setup, then enters access and waits for the slave to raise `pready`.
+The testbench sends a write transfer to address 32'hABCD_1234 with data 32'hFEDC_ABCD. You can follow the transfer signals in Vivado’s waveform viewer.
 
+Simulation result
 
+The testbench lets you observe how the master responds when pready goes high. It does not include automatic pass or fail checks.
 
-The design supports write transfers. It does not include read-data handling or error responses.
-
-
-
-&#x20;***Files***
-
-
-
-\- `APB\_master.v` — the APB master module
-
-\- `APB\_master\_tb.v` — the testbench
-
-\- `apb\_constraints.xdc` — a 10 ns clock constraint used for timing analysis
-
-
-
-Update these filenames if they differ from the names in the repository.
-
-
-
-&#x20;***Running the simulation***
-
-
-
-In Vivado, use `apb\_master` as the design top and `apb\_master\_tb` as the simulation top. Then run \*\*Run Behavioral Simulation\*\*.
-
-
-
-The testbench applies a write transfer with address `32'hABCD\_1234` and data `32'hFEDC\_ABCD`, then raises `pready` to complete the access.
-
-
-
-&#x20;***Timing and project status***
-
-
-
-The XDC file specifies a 10 ns clock period (100 MHz) for timing analysis. I’m not using an FPGA board, so this is an assumed clock period and the design has not been tested on hardware.
-
-
-
-I ran synthesis and implementation in Vivado. This is a learning project, not a complete APB verification or production design.
-
-```
-
+I used Vivado to synthesize and implement the design for practice. I do not have an FPGA board, so I have not tested it on hardware.
