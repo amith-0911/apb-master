@@ -1,6 +1,3 @@
-You’re right—the last version was shorter than your FIFO README. Here’s a fuller version with the same kinds of sections, while keeping the instructions specific to Vivado and your project.
-
-```markdown
 # APB Master
 
 A Verilog APB master and testbench created as a learning project. The design uses a finite-state machine to control a write transfer through the idle, setup, and access phases.
@@ -38,4 +35,3 @@ The XDC file contains a 10 ns clock period constraint. This corresponds to an as
 The testbench is intended for observing the write transfer in Vivado's waveform viewer. It does not include automated pass or fail checks.
 
 I used Vivado to synthesize and implement the design for practice. I have not tested it on an FPGA board.
-```
