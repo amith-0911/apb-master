@@ -1,27 +1,27 @@
-APB Master
+# APB Master
 
-This is a small Verilog project I made while learning how an APB master works. It includes the design and a testbench that I ran in Vivado.
+A basic APB master written in Verilog, with a testbench for trying a write transfer in Vivado.
 
-Project files
+## Project files
 
-APB Master.v contains the master design. It moves through idle, setup, and access states to handle a transfer.
+- `APB Master.v` - APB master design
+- `APB_tb.v` - simulation testbench
+- `apb_constraints.xdc` - 10 ns clock constraint for timing analysis
 
-APB_tb.v contains the testbench. It creates the clock, applies reset, sends a write transfer, and raises pready to let the transfer finish.
+## Requirements
 
-apb_constraints.xdc sets a 10 ns clock period for timing analysis.
+- AMD Vivado
 
-Requirements
+## Run the simulation
 
-AMD Vivado is needed to open the project and run the simulation.
+Open the project in Vivado. Make sure `APB Master.v` is under Design Sources and `APB_tb.v` is under Simulation Sources.
 
-Run the simulation
+Set `apb_master_tb` as the simulation top, then run behavioral simulation. The testbench sends a write transfer to address `32'hABCD_1234` with data `32'hFEDC_ABCD`.
 
-In Vivado, make sure APB Master.v is under Design Sources and APB_tb.v is under Simulation Sources. Set apb_master_tb as the simulation top, then run behavioral simulation.
+Use Vivado's waveform viewer to follow the transfer through the idle, setup, and access states.
 
-The testbench sends a write transfer to address 32'hABCD_1234 with data 32'hFEDC_ABCD. You can follow the transfer signals in Vivado’s waveform viewer.
+## Simulation result
 
-Simulation result
+The testbench lets you observe how the master responds when `pready` goes high. It does not include automatic pass or fail checks.
 
-The testbench lets you observe how the master responds when pready goes high. It does not include automatic pass or fail checks.
-
-I used Vivado to synthesize and implement the design for practice. I do not have an FPGA board, so I have not tested it on hardware.
+I used Vivado to synthesize and implement the design for practice. I do not have an FPGA board, so I have not tested the design on hardware.
